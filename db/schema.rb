@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_10_100553) do
+ActiveRecord::Schema.define(version: 2022_04_11_130957) do
 
   create_table "fixtures", force: :cascade do |t|
     t.string "home_team"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2022_04_10_100553) do
     t.datetime "updated_at", null: false
     t.string "away_team_result"
     t.string "away_team_score"
+    t.integer "home_team_id"
+    t.integer "away_team_id"
     t.index ["league_id"], name: "index_fixtures_on_league_id"
   end
 

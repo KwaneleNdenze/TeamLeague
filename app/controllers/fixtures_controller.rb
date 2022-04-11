@@ -60,8 +60,6 @@ class FixturesController < ApplicationController
     @home_team = Team.where(id:@fixture.league_id, name:@fixture.home_team )
     @away_team = Team.where(id:@fixture.league_id, name: @fixture.away_team).collect{ |t| [ t.name ] }
 
-
-    byebug
     @fixture.update(fixture_params)
    
       if @fixture.home_team_score.present?
@@ -88,6 +86,6 @@ class FixturesController < ApplicationController
 
   private
   def fixture_params
-    params.require(:fixture).permit(:home_team, :away_team, :date, :home_team_score, :away_team_score, :home_team_result, :away_team_result)
+    params.require(:fixture).permit(:home_team, :away_team, :date, :home_team_score, :away_team_score, :home_team_result, :away_team_result, :home_team_id, :away_team_id)
   end
 end

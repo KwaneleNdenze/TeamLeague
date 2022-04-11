@@ -21,8 +21,8 @@
     <tbody>
     <% @league.fixtures.each do |fixture| %>
     <tr>
-      <td> <%= fixture.home_team%> </td> 
-      <td> <%= fixture.away_team%> </td>
+      <td> <%= fixture.home_team.name %> </td> 
+      <td> <%= fixture.away_team.name %> </td>
       <td> <%= fixture.home_team_score%> - <%= fixture.away_team_score%> </td> 
       <td> <%= link_to 'Edit Result', edit_league_result_path(league_id: @league, id: fixture), :class => 'btn btn-outline-primary' %> </td>
     </tr>
