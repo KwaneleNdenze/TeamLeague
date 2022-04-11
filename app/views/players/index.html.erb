@@ -1,0 +1,23 @@
+<h1>Players</h1>
+<table class="table pt-3 pb-3 col-md-8" style="margin:auto; float:none">
+  <thead>
+    <tr>
+      <th scope="col">Player</th>
+      <th scope="col">Jersey No</th>
+      
+      <th></th>
+      
+    </tr>
+  </thead>
+  <tbody>
+  <% @players.each do |player| %>
+
+  <tr>
+    <td><%= player.name%></td>
+    <td> <%=player.jersey%> </td>
+    
+  </tr>
+  <%end %>
+    
+  </tbody>
+</table>

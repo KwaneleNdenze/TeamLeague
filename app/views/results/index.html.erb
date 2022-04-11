@@ -1,0 +1,33 @@
+<div class="jumbotron">
+  <h1 class="display-4"><%= @league.name %> Results</h1>
+  
+  <hr class="my-4">
+  <%= link_to 'Back To Teams', league_path(@league.id), :class => 'btn btn-outline-primary' %>
+  
+  
+
+</div>
+
+<div class="col-md-12">
+  <table class="table">
+    <thead>
+      <tr>
+      <th>Home Team</th>
+      <th>Away Team</th>
+      <th>Result</th>
+      <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @league.fixtures.each do |fixture| %>
+    <tr>
+      <td> <%= fixture.home_team%> </td> 
+      <td> <%= fixture.away_team%> </td>
+      <td> <%= fixture.home_team_score%> - <%= fixture.away_team_score%> </td> 
+      <td> <%= link_to 'Edit Result', edit_league_result_path(league_id: @league, id: fixture), :class => 'btn btn-outline-primary' %> </td>
+    </tr>
+    <%end %>
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,38 @@
+<div class="jumbotron">
+  <h1 class="display-4"><%= @league.name %> Fixtures</h1>
+  
+  <hr class="my-4">
+  <%= link_to 'Back To Teams', league_path(@league.id), :class => 'btn btn-outline-primary' %>
+  
+  
+
+</div>
+<div class="col-md-12 pb-3">
+<%= link_to 'Create Fixture', new_league_fixture_path(@league), :class => 'btn btn-outline-success' %> 
+</div>
+<div class="col-md-12">
+  <table class="table">
+    <thead>
+      <tr>
+      <th>Home Team</th>
+      <th></th>
+      <th>Away Team</th>
+      <th>Date</th>
+      <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @fixtures.each do |fixture| %>
+    <tr>
+      <td> <%= fixture.home_team%> </td> 
+      <td> vs </td> 
+      <td> <%= fixture.away_team%> </td>
+      <td> <%= fixture.date%> </td>   
+      <td> <%= link_to 'Edit Fixture', edit_league_fixture_path(league_id: @league, id: fixture), :class => 'btn btn-outline-primary' %> | <%= link_to 'Destroy', league_fixture_path(@league, fixture), :class => 'btn btn-outline-danger',
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %> | <%= link_to 'Record Result', edit_league_result_path(league_id: @league, id: fixture), :class => 'btn btn-outline-info' %> </td> 
+    </tr>
+    <%end %>
+    </tbody>
+  </table>
+</div>

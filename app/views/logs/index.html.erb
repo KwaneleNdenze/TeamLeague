@@ -1,0 +1,46 @@
+<div class="jumbotron">
+  <h1 class="display-4"><%= @league.name %> Table</h1>
+  
+  <hr class="my-4">
+
+  <%= link_to 'Back To Teams', league_path(@league.id), :class => 'btn btn-outline-primary' %>
+  
+  
+
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Team</th>
+      <th>Matches Played</th>
+      <th>Won</th>
+      <th>Lost</th>
+      <th>Drew</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @count = 0%>
+    <% @league.teams.sort_by(&:points).each do |team| %>
+    <% @points = Fixture.where(home_team: team.name, home_team_result: 'W').or(Fixture.where(away_team: team.name, away_team_result: 'W')).count * 3 + (Fixture.where(home_team: team.name, home_team_result: 'D').or(Fixture.where(away_team: team.name, away_team_result: 'D')).count) %>
+    <% @matches_played = Fixture.where(home_team: team.name).or(Fixture.where(away_team: team.name)).where.not(home_team_result: nil).count %>
+    <% @wins = Fixture.where(home_team: team.name, home_team_result: "W").or(Fixture.where(away_team: team.name, away_team_result: "W")).count %>
+    <% @losses = Fixture.where(home_team: team.name, home_team_result: "L").or(Fixture.where(away_team: team.name, away_team_result: "L")).count %>
+    <% @draws = Fixture.where(home_team: team.name, home_team_result: 'D').or(Fixture.where(away_team: team.name, away_team_result: 'D')).count %>
+   
+  <tr>
+    <td><%= @count += 1 %></td>
+    <td><%= team.name%></td>
+    <td><%= @matches_played %></td>
+    <td><%= @wins %></td>
+    <td><%= @losses %></td>
+    <td><%= @draws %></td>
+    <td><%= @points %></td>
+    
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back To Teams', league_path(@league.id), :class => 'btn btn-outline-primary' %>
