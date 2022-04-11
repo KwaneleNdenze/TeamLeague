@@ -18,7 +18,7 @@
       <p>
         <%= form.label :home_team %><br>
    
-        <%= form.select :home_team, League.find(params[:league_id]).teams.collect { |t| [ t.name, t.name ] }, :class => 'form-cintrol' %>
+        <%= form.select :home_team_id, League.find(params[:league_id]).teams.collect { |t| [ t.name, t.id ] }, :class => 'form-cintrol' %>
       </p>
     </div>
     <div class="col-md-2">  
@@ -27,7 +27,7 @@
     <div class="col-md-5">  
       <p>
         <%= form.label :away_team %><br>
-        <%= form.select :away_team, League.find(params[:league_id]).teams.collect { |t| [ t.name, t.name ] }, :class => 'form-control' %>
+        <%= form.select :away_team_id, League.find(params[:league_id]).teams.collect { |t| [ t.name, t.id ] }, :class => 'form-control' %>
       </p>
     </div>
   </div>
