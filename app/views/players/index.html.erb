@@ -4,20 +4,15 @@
     <tr>
       <th scope="col">Player</th>
       <th scope="col">Jersey No</th>
-      
       <th></th>
-      
     </tr>
   </thead>
   <tbody>
   <% @players.each do |player| %>
-
   <tr>
     <td><%= player.name%></td>
     <td> <%=player.jersey%> </td>
-    
   </tr>
   <%end %>
-    
   </tbody>
 </table>

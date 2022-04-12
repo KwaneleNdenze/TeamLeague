@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :fixtures
     resources :results, only: [:index, :edit]
     resources :logs, only: [:index]
+    resources :tournaments, only: [:index]
     resources :teams do
       resources :managers 
       resources :players

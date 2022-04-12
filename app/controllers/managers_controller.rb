@@ -8,8 +8,7 @@ class ManagersController < ApplicationController
     @manager = Manager.find(params[:id])
   end
 
-  def new
-   
+  def new 
     @league = League.find(params[:league_id])
     @team = @league.teams.find(params[:team_id])
     @manager = Manager.new
@@ -19,8 +18,6 @@ class ManagersController < ApplicationController
     
     @league = League.find(params[:league_id])    
     @team = @league.teams.find(params[:team_id])
-    
-    # @manager = Manager.new(manager_params.merge(team_id: @team.id))
      @manager = @team.build_manager(manager_params) #for has_one, belongs_to relationship/association
      @team.save!
      if @manager.errors.none?
@@ -49,7 +46,6 @@ class ManagersController < ApplicationController
     @team = @league.teams.find(params[:team_id])
     @manager = Manager.find(params[:id])
     @manager.destroy
-    # redirect_to league_path(@league)
     redirect_to league_team_path(league_id:@league.id, id:@team.id)
   end
 

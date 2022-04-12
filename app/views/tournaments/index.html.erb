@@ -1,0 +1,68 @@
+<div class="jumbotron">
+  <h1 class="display-4" style="text-align:center"><%= @league.name %> Top 8 Tournament</h1>
+  <hr class="my-4">
+  <div style="text-align:center">
+  <%= link_to 'Back To Teams', league_path(@league.id), :class => 'btn btn-outline-primary' %>
+  <%= link_to 'Seed Teams', league_tournaments_path(@league), :class => 'btn btn-outline-info' %>
+  </div>
+</div>
+
+
+<div class="row col-md-10" style="margin:auto; float:none">
+<div class="col-md-5">
+    <% @top_8 = @table_data.first(8) %>
+    <% @first_4 = @top_8.first(4).sort_by{rand} %>
+    <% @last_4 = @top_8.last(4).sort_by{rand} %>
+<table class="table table-borderless">
+    <thead>
+      <tr>
+      <th>Home Team</th>      
+      </tr>
+    </thead>
+    <tbody>
+    <% @first_4.each_with_index do |td, index| %>
+    <tr>
+      <td><%= td[:team]%></td>      
+    </tr>
+    <%end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="col-md-2">
+<table class="table table-borderless">
+    <thead>
+      <tr>
+      <th>vs</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @last_4.each_with_index do |td, index| %>
+    <tr>
+      <td>-</td>       
+    </tr>
+    <%end %>
+    </tbody>
+  </table>
+</div>
+<div class="col-md-5">
+<table class="table table-borderless">
+    <thead>
+      <tr>
+      <th>Away Team</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @last_4.each_with_index do |td, index| %>    
+    <tr>    
+      <td><%= td[:team]%></td>       
+    </tr>
+    <%end %>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<%= link_to 'Back To Teams', league_path(@league.id), :class => 'btn btn-outline-primary' %>
+
+

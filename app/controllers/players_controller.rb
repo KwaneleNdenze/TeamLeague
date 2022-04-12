@@ -11,7 +11,6 @@ class PlayersController < ApplicationController
   def new
     @league = League.find(params[:league_id])
     @team = @league.teams.find(params[:team_id])
-    # @manager = @team.manager.find(params[:manager_id])
     @player = Player.new
   end
 

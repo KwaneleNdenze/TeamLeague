@@ -3,7 +3,6 @@ class FixturesController < ApplicationController
   def index
     @league = League.find(params[:league_id])
     @fixtures = @league.fixtures.where(home_team_result: nil)
-    
   end
 
   def show
@@ -18,7 +17,6 @@ class FixturesController < ApplicationController
 
   def create
     @league = League.find(params[:league_id])
-
     @fixture = @league.fixtures.create(fixture_params)
     if @fixture.errors.none?
     redirect_to league_fixtures_path(@league)
@@ -30,7 +28,6 @@ class FixturesController < ApplicationController
   def edit
     @league = League.find(params[:league_id])
     @fixture = Fixture.find(params[:id])
-        
   end
 
   def update
@@ -56,7 +53,6 @@ class FixturesController < ApplicationController
       @fixture.away_team_result = "D"
     end
 
-    
     @home_team = Team.where(id:@fixture.league_id, name:@fixture.home_team )
     @away_team = Team.where(id:@fixture.league_id, name: @fixture.away_team).collect{ |t| [ t.name ] }
 
@@ -81,7 +77,6 @@ class FixturesController < ApplicationController
     @fixture = @league.fixtures.find(params[:id])
     @fixture.destroy
     redirect_to league_fixtures_path(@league)
-    
   end
 
   private

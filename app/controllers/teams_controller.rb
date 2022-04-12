@@ -1,12 +1,11 @@
 class TeamsController < ApplicationController
+  
   def index
-    @teams = Team.all
-    
+    @teams = Team.all 
   end
 
   def show    
-    @team = Team.find(params[:id])
-   
+    @team = Team.find(params[:id]) 
   end
 
   def new
@@ -15,10 +14,9 @@ class TeamsController < ApplicationController
   end
 
   def create
-    
     @league = League.find(params[:league_id])
-
     @team = @league.teams.create(team_params)
+    
     if @team.errors.none?
     redirect_to league_path(@league)
     else 

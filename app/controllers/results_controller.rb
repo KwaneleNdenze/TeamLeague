@@ -4,16 +4,13 @@ class ResultsController < ApplicationController
     @league = League.find(params[:league_id])
     if params[:home_team_result] != nil 
       @result = Fixture.all
-    end
-    
+    end  
   end
 
   def edit
     @league = League.find(params[:league_id])
     @result = Fixture.find(params[:id])
   end
-
-  
 
   private
   def result_params

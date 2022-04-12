@@ -1,18 +1,14 @@
 <div class="jumbotron">
-  <h1 class="display-4"><%= @team.name %></h1>
+  <h1 class="display-4" style="text-align:center"><%= @team.name %></h1>
   <% if @team.manager.present? %>
-
-  <h3>Manager: <%= @team.manager.name %> </h3>
-
+  <h3 style="text-align:center">Manager: <%= @team.manager.name %> </h3>
   <% else %>
-  <h3><%= @team.name %> has no manager</h3>
+  <h3 style="text-align:center"><%= @team.name %> has no manager</h3>
   <% end %>
-  
-  
-  
   <hr class="my-4">
+
   <div class="row">
- 
+  <div style="margin:auto; float:none">
   <%= link_to 'Back', league_path(@team.league_id), :class => 'btn btn-outline-primary'%>
   <% if @team.manager.present?%>
   <%= link_to 'Remove Manager', league_team_manager_path(@team.league_id, @team, @team.manager), :class => 'btn btn-outline-danger', method: :delete,
@@ -21,14 +17,13 @@
   <%= link_to 'Add Manager', new_league_team_manager_path(@team.league_id, @team), :class => 'btn btn-outline-success'%>
   <% end %>
   </div>
+  </div>
 </div>
-
 
 <div class="col-md-12 pb-3">
 <h1>Players Squad</h1>
 <% if @team.manager.present?%>
 <%= link_to 'Add New Player', new_league_team_player_path(@team.league_id, @team), :class => 'btn btn-outline-success' %> 
-
 <% end %>
 </div>
 <% if @team.manager.present?%>
@@ -37,8 +32,7 @@
     <tr>
       <th scope="col">Player</th>
       <th scope="col">Jersey No</th>
-      <th></th>
-      
+      <th></th> 
     </tr>
   </thead>
   <tbody>
@@ -57,9 +51,6 @@
 
 <% else %>
 <h4><%= @team.name %> has no players. Assign manager to team before building squad.</h4>
-
-
 <% end %>
-
 <%= link_to 'Back', league_path(@team.league_id), :class => 'btn btn-outline-primary'%>
 

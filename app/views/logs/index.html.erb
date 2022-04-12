@@ -1,24 +1,24 @@
 <div class="jumbotron">
-  <h1 class="display-4"><%= @league.name %> Table</h1>
-  
+  <h1 class="display-4" style="text-align:center"><%= @league.name %> Table</h1>  
   <hr class="my-4">
-
+  <div style="text-align:center">
   <%= link_to 'Back To Teams', league_path(@league.id), :class => 'btn btn-outline-primary' %>
-  
-  
-
+  </div>
 </div>
+
 <table class="table">
   <thead>
     <tr>
       <th>#</th>
       <th>Team</th>
-      <th>Matches Played</th>
-      <th>Won</th>
-      <th>Lost</th>
-      <th>Drew</th>
-      <th>Points</th>
-      <th>Goal Diff</th>
+      <th>MP</th>
+      <th>W</th>
+      <th>L</th>
+      <th>D</th>
+      <th>GF</th>
+      <th>GA</th>
+      <th>GD</th>
+      <th>Pts</th>
     </tr>
   </thead>
   <tbody>
@@ -30,11 +30,12 @@
         <td><%= td[:won] %></td>
         <td><%= td[:lost] %></td>
         <td><%= td[:drew] %></td>
-        <td><%= td[:points] %></td>
+        <td><%= td[:goals_for] %></td>
+        <td><%= td[:goals_against] %></td>
         <td><%= td[:goal_difference] %></td>
+        <td><%= td[:points] %></td>
       </tr>
     <% end %>
-  
   </tbody>
 </table>
 

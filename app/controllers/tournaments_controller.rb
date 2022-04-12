@@ -1,6 +1,5 @@
-class LogsController < ApplicationController
-
-  def index
+class TournamentsController < ApplicationController
+ def index
     @league = League.find(params[:league_id])
     @fixtures = @league.fixtures
     
@@ -51,7 +50,6 @@ class LogsController < ApplicationController
 
     @table_data = sorted_by_points
   end
-  
 
   def calculate_home_team_scores(fixture, generated_data)
     if fixture.home_team_result == 'W'
