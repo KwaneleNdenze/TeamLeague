@@ -1,0 +1,56 @@
+.jumbotron
+  h1.display-4[style="text-align:center"]
+    = @league.name
+    |  Table
+  hr.my-4
+  div[style="text-align:center"]
+    = link_to 'Back To Teams', league_path(@league.id), :class => 'btn btn-outline-primary'
+table.table
+  thead
+    tr
+      th
+        | #
+      th
+        | Team
+      th
+        | MP
+      th
+        | W
+      th
+        | L
+      th
+        | D
+      th
+        | GF
+      th
+        | GA
+      th
+        | GD
+      th
+        | Pts
+  tbody
+    - @table_data.each_with_index do |td, index|
+      tr
+        td
+          = index + 1
+        td
+          = td[:team]
+        td
+          = td[:matches_played]
+        td
+          = td[:won]
+        td
+          = td[:lost]
+        td
+          = td[:drew]
+        td
+          = td[:goals_for]
+        td
+          = td[:goals_against]
+        td
+          = td[:goal_difference]
+        td
+          = td[:points]
+= link_to 'Back To Teams', league_path(@league.id), :class => 'btn btn-outline-primary'
+
+

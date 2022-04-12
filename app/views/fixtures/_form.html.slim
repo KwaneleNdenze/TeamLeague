@@ -1,0 +1,32 @@
+= form_with(model: [ @league, @fixture ], local: true) do |form|
+  - if @fixture.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@fixture.errors.count, "error")
+        |  prohibited this fixture from being created: 
+      ul
+        - @fixture.errors.full_messages.each do |msg|
+          li
+            = msg
+  .row.col-md-12.pb-5
+    .col-md-5.form-group
+      p
+        = form.label :home_team
+        br
+        = form.select :home_team_id, League.find(params[:league_id]).teams.collect { |t| [ t.name, t.id ] }, :class => 'form-cintrol'
+    .col-md-2
+      p
+        br
+        | vs
+    .col-md-5
+      p
+        = form.label :away_team
+        br
+        = form.select :away_team_id, League.find(params[:league_id]).teams.collect { |t| [ t.name, t.id ] }, :class => 'form-control'
+  .col-md-12.form-group
+    = form.label :date
+    br
+    = form.date_field :date, :class => 'form-control col-md-6'
+  p
+    = form.submit :class=>'btn btn-outline-success'
+= link_to 'Back', league_fixtures_path(@league), :class => 'btn btn-outline-primary'

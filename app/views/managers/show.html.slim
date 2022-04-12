@@ -1,0 +1,19 @@
+.jumbotron
+  h1.display-4
+    = @manager.name
+    |  - 
+    = @manager.team
+  hr.my-4
+  = link_to 'Back', managers_path, :class => 'btn btn-outline-primary'
+h1
+  | Players
+= link_to 'Add New Player', new_league_team_player_path(@manager.league_id), :class => 'btn btn-outline-success'
+table.table
+  thead
+    tr
+      th[scope="col"]
+        | Player
+      th[scope="col"]
+  tbody
+    = render @team.players
+= link_to 'Back', managers_path, :class => 'btn btn-outline-primary'

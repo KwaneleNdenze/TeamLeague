@@ -1,0 +1,50 @@
+.jumbotron
+  h1.display-4[style="text-align:center"]
+    = @team.name
+  - if @team.manager.present?
+    h3[style="text-align:center"]
+      | Manager: 
+      = @team.manager.name
+  - else
+    h3[style="text-align:center"]
+      = @team.name
+      |  has no manager
+  hr.my-4
+  .row
+    div[style="margin:auto; float:none"]
+      = link_to 'Back', league_path(@team.league_id), :class => 'btn btn-outline-primary'
+      - if @team.manager.present?
+        = link_to 'Remove Manager', league_team_manager_path(@team.league_id, @team, @team.manager), :class => 'btn btn-outline-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
+      - else
+        = link_to 'Add Manager', new_league_team_manager_path(@team.league_id, @team), :class => 'btn btn-outline-success'
+.col-md-12.pb-3
+  h1
+    | Players Squad
+  - if @team.manager.present?
+    = link_to 'Add New Player', new_league_team_player_path(@team.league_id, @team), :class => 'btn btn-outline-success'
+- if @team.manager.present?
+  table.table
+    thead
+      tr
+        th[scope="col"]
+          | Player
+        th[scope="col"]
+          | Jersey No
+        th
+    tbody
+      - @team.manager.players.each do |player|
+        tr
+          td
+            = player.name
+          td
+            =player.jersey
+          td
+            = link_to 'Edit', edit_league_team_player_path(league_id: @team.league_id, team_id: @team, id: player.id), :class => 'btn btn-outline-warning'
+            |  | 
+            = link_to 'Destroy', league_team_player_path(@team.league_id, @team, player.id), :class => 'btn btn-outline-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
+- else
+  h4
+    = @team.name
+    |  has no players. Assign manager to team before building squad.
+= link_to 'Back', league_path(@team.league_id), :class => 'btn btn-outline-primary'
+

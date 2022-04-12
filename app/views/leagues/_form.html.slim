@@ -1,0 +1,23 @@
+= form_with model: @league, local: true do |form|
+  - if @league.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@league.errors.count, "error")
+        |  prohibited this league from being saved: 
+      ul
+        - @league.errors.full_messages.each do |msg|
+          li
+            = msg
+  p
+    = form.label :name
+    br
+    = form.text_field :name, :class => 'form-control col-md-6'
+  p
+    = form.label :country
+    br
+    = form.text_field :country, :class => 'form-control col-md-6'
+  p
+    = form.submit :class => 'btn btn-outline-success'
+    |  | 
+    = link_to 'Back To Leagues', leagues_path, :class => 'btn btn-outline-primary'
+ 

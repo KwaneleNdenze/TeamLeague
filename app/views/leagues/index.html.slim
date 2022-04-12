@@ -1,0 +1,28 @@
+h1
+  | Leagues
+table.table
+  thead
+    tr
+      th
+      th[scope="col"]
+        | League
+      th[scope="col"]
+        | Country
+      th[scope="col"]
+  tbody
+    - @count = 0
+    - @leagues.each do |league|
+      tr
+        td
+          = @count +=1
+        td
+          = league.name
+        td
+          = league.country
+        td
+          = link_to 'Show', league_path(league), :class => 'btn btn-outline-primary'
+          |  | 
+          = link_to 'Edit', edit_league_path(league), :class => 'btn btn-outline-warning'
+          |  | 
+          = link_to 'Destroy', league_path(league), :class => 'btn btn-outline-danger', :method => :delete,  :data => { :confirm => 'Are you sure?' }
+= link_to 'Create New League', new_league_path, :class => 'btn btn-outline-success'

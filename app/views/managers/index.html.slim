@@ -1,0 +1,26 @@
+h1
+  | Managers
+table.table
+  thead
+    tr
+      th[scope="col"]
+        | Manager
+      th[scope="col"]
+        | Team
+      th[scope="col"]
+  tbody
+    - @managers.each do |manager|
+      tr
+        td
+          = manager.name
+        td
+          = manager.team
+        td
+          = link_to 'Show', league_path(manager), :class => 'btn btn-outline-primary'
+          |  | 
+          = link_to 'Edit', edit_manager_path(manager), :class => 'btn btn-outline-warning'
+          |  | 
+          = link_to 'Destroy', manager_path(manager), :class => 'btn btn-outline-danger',
+          -               method: :delete,
+          -               data: { confirm: 'Are you sure?' }
+= link_to 'Create New Manager', new_manager_path, :class => 'btn btn-outline-success'

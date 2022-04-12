@@ -1,0 +1,17 @@
+= form_with(model: [@league, @team, @manager], local: true) do |form|
+  - if @manager.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@manager.errors.count, "error")
+        |  prohibited this manager from being saved: 
+      ul
+        - @manager.errors.full_messages.each do |msg|
+          li
+            = msg
+  p
+    = form.label :name
+    br
+    = form.text_field :name, :class => 'form-control col-md-6'
+  p
+    = form.submit :class => 'btn btn-outline-success'
+= link_to 'Back', league_team_path(@league, @team, @manager)

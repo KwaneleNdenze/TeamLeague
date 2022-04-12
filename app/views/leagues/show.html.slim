@@ -1,0 +1,32 @@
+.jumbotron
+  h1.display-4[style="text-align:center"]
+    = @league.name
+    |  - 
+    = @league.country
+  hr.my-4
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto[style="margin:auto; float:none"]
+        li.nav-item
+          = link_to 'League Table', league_logs_path(@league), :class => 'nav-link'
+        li.nav-item
+          = link_to 'League Fixtures', league_fixtures_path(@league), :class => 'nav-link'
+        li.nav-item
+          = link_to 'League Results', league_results_path(@league), :class => 'nav-link'
+        li.nav-item
+          = link_to 'League Tournament', league_tournaments_path(@league), :class => 'nav-link'
+h1
+  | Teams
+.pb-3
+  = link_to 'Add New Team', new_league_team_path(@league), :class => 'btn btn-outline-success'
+  |  | 
+  = link_to 'Back To Leagues', leagues_path, :class => 'btn btn-outline-primary'
+table.table
+  thead
+    tr
+      th[scope="col"]
+        | Team
+      th[scope="col"]
+  tbody
+    = render @league.teams
+= link_to 'Back To Leagues', leagues_path, :class => 'btn btn-outline-primary'

@@ -1,0 +1,31 @@
+.jumbotron
+  h1.display-4
+    = @league.name
+    |  Results
+  hr.my-4
+  = link_to 'Back To Teams', league_path(@league.id), :class => 'btn btn-outline-primary'
+.col-md-12
+  table.table
+    thead
+      tr
+        th
+          | Home Team
+        th
+          | Away Team
+        th
+          | Result
+        th
+    tbody
+      - @league.fixtures.each do |fixture|
+        tr
+          td
+            = fixture.home_team.name
+          td
+            = fixture.away_team.name
+          td
+            = fixture.home_team_score
+            |  - 
+            = fixture.away_team_score
+          td
+            = link_to 'Edit Result', edit_league_result_path(league_id: @league, id: fixture), :class => 'btn btn-outline-primary'
+

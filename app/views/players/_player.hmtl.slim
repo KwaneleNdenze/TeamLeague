@@ -1,0 +1,13 @@
+tr
+  td
+    = player.name
+  td
+    = player.jersey
+  td
+    = link_to 'Show', league_team_player_path(player), :class => 'btn btn-outline-primary'
+    |  | 
+    = link_to 'Edit', edit_league_team_path(team.league, team), :class => 'btn btn-outline-warning'
+    |  | 
+    = link_to 'Destroy', [team.league, team], :class => 'btn btn-outline-danger',
+    -               method: :delete,
+    -               data: { confirm: 'Are you sure?' }

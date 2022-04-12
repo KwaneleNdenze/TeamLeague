@@ -1,0 +1,37 @@
+.jumbotron
+  h1.display-4
+    = @league.name
+    |  Fixtures
+  hr.my-4
+  = link_to 'Back To Teams', league_path(@league.id), :class => 'btn btn-outline-primary'
+.col-md-12.pb-3
+  = link_to 'Create Fixture', new_league_fixture_path(@league), :class => 'btn btn-outline-success'
+.col-md-12
+  table.table
+    thead
+      tr
+        th
+          | Home Team
+        th
+        th
+          | Away Team
+        th
+          | Date
+        th
+    tbody
+      - @fixtures.each do |fixture|
+        tr
+          td
+            = fixture.home_team.name
+          td
+            |  vs 
+          td
+            = fixture.away_team.name
+          td
+            = fixture.date
+          td
+            = link_to 'Edit Fixture', edit_league_fixture_path(league_id: @league, id: fixture), :class => 'btn btn-outline-primary'
+            |  | 
+            = link_to 'Destroy', league_fixture_path(@league, fixture), :class => 'btn btn-outline-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
+            |  | 
+            = link_to 'Record Result', edit_league_result_path(league_id: @league, id: fixture), :class => 'btn btn-outline-info'
